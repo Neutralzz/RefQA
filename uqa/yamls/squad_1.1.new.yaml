@@ -1,0 +1,80 @@
+description: Unsupervised QA on SQuAD v1.1
+
+auth:
+  vc: nextmsra
+  cluster: eu1
+  docker:
+    #image: pytorch/pytorch:1.0-cuda10.0-cudnn7-devel
+    registry: phillyregistry.azurecr.io
+    image: philly/jobs/custom/pytorch_with_bert:py36_cuda10
+
+code:
+  local_dir: $CONFIG_DIR/../
+
+storage:
+  _default:
+    storage_account_name: conversationhub
+    container_name: unilm
+    mount_path: /mnt/unilm
+  _output:
+    storage_account_name: conversationhub
+    container_name: unilm
+    mount_path: /mnt/outputs
+
+search:
+  job_template:
+    #name: model_lv-{lv}_tm-{tm}_lr-{lr}_epoch-{epochs}
+    name: model_{ds}{ot}sample-{sn}_lv-{lv}_tm-{tm}_lr-{lr}_epoch-{epochs}_seed-{sd}
+    # sku  G1 -> 1GPU  G2 -> 2GPU
+    # -m torch.distributed.launch --nproc_per_node=4 
+    # --eval_all_checkpoints
+    sku: G2
+    command:
+    - pip install --user pytorch-transformers; python run_squad_new.py 
+        --model_type bert 
+        --model_name_or_path bert-base-uncased 
+        --do_train
+        --do_lower_case 
+        --train_file /mnt/unilm/hanbao/exp/UQA/data/tmp/{ot}sample_{sn}-natural_{lv}_{tm}_{ds}data.json
+        --predict_file /mnt/unilm/hanbao/exp/UQA/data/dev-v1.1.json 
+        --learning_rate {lr} 
+        --num_train_epochs {epochs}
+        --max_seq_length 384 
+        --doc_stride 128 
+        --output_dir [PT_OUTPUT_DIR] 
+        --per_gpu_eval_batch_size=6   
+        --per_gpu_train_batch_size=24   
+        --seed {sd}
+        --fp16
+        --logging_steps 1000
+        --save_steps 1000
+        --evaluate_during_training
+    #submit_args:
+    #  queue: bonus
+  type: grid
+  max_trials: 100
+  params:
+    - name: ds
+      spec: discrete
+      values: ['wikitop_' ] 
+    - name: ot
+      spec: discrete
+      values: ['']  # ['', 'balanced_' ]
+    - name: sn
+      spec: discrete
+      values: ['30w' ] 
+    - name: lv
+      spec: discrete
+      values: ['clause2']  
+    - name: tm
+      spec: discrete
+      values: ['rfm1noisy2'] # ['ptr1', 'rfm1identity'] 
+    - name: lr
+      spec: discrete
+      values: [3e-5]
+    - name: epochs
+      spec: discrete
+      values: [2.0]
+    - name: sd
+      spec: discrete
+      values: [17, 42]

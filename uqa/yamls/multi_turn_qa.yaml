@@ -1,0 +1,57 @@
+description: Unsupervised QA on SQuAD v1.1
+
+auth:
+  vc: nextmsra
+  cluster: eu1
+  docker:
+    #image: pytorch/pytorch:1.0-cuda10.0-cudnn7-devel
+    registry: phillyregistry.azurecr.io
+    image: philly/jobs/custom/pytorch_with_bert:py36_cuda10
+
+code:
+  local_dir: $CONFIG_DIR/../
+
+storage:
+  _default:
+    storage_account_name: conversationhub
+    container_name: unilm
+    mount_path: /mnt/unilm
+  _output:
+    storage_account_name: conversationhub
+    container_name: unilm
+    mount_path: /mnt/outputs
+
+search:
+  job_template:
+    #name: model_lv-{lv}_tm-{tm}_lr-{lr}_epoch-{epochs}
+    name: multi_turn4_gm-{gm}_r-{st}_cr-{tr}_seed-{sd}_newsqa
+
+    sku: G4
+    command:
+    - sh install_tools.sh && python multi_turn.py
+      --output_dir [PT_OUTPUT_DIR] 
+      --model_dir /mnt/unilm/hanbao/exp/UQA/model/bert-large-wwm-uqa-newsqa
+      --predict_file /mnt/unilm/hanbao/exp/UQA/data/newsqa.dev.json
+      --generate_method {gm}
+      --score_threshold {st}
+      --threshold_rate {tr}
+      --seed {sd}
+      --fp16
+    #submit_args:
+    #  queue: bonus
+  type: grid
+  max_trials: 100
+  params:
+    - name: gm
+      spec: discrete
+      values: [2]
+    - name: st
+      spec: discrete
+      values: [0.15]
+    - name: tr
+      spec: discrete
+      values: [0.9]
+    - name: sd
+      spec: discrete
+      values: [17, 42]
+
