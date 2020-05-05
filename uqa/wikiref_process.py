@@ -7,6 +7,9 @@ import spacy
 import benepar
 import nltk
 
+nltk.download('punkt')
+benepar.download('benepar_en2')
+
 data_dir = os.getenv("REFQA_DATA_DIR", "./data")
 
 entity_category = {
