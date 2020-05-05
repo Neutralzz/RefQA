@@ -2,4 +2,6 @@
 	<p>Harvesting and Refining Question-Answer Pairs for Unsupervised QA</p>
 </h1>
 
-The implementation of the paper "Harvesting and Refining Question-Answer Pairs for Unsupervised QA"
+This repo contains the data, codes and models for the ACL2020 paper "Harvesting and Refining Question-Answer Pairs for Unsupervised QA".
+
+We will provide instructions and publish data and models within two weeks.

@@ -5,7 +5,7 @@ import random
 from collections import Counter
 from nltk import word_tokenize
 import numpy as np
-from data_utils import reformulate_quesiton, reformulate_question_new
+from data_utils import reformulate_quesiton
 import spacy
 import copy
 
