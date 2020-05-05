@@ -36,11 +36,11 @@ The mixed-precision training code requires the specific version of [NVIDIA/apex]
 
 ## Data and Models
 
-The format of our generated data is SQuAD-like. The data can be downloaded from [here]().
+The format of our generated data is SQuAD-like. The data can be downloaded from [here](https://drive.google.com/open?id=18o8EjlCcimvuF0HYe8sHSu6epTqDwvp_).
 
 The links to the trained models:
-- [refqa-main](): The trained model using 300k RefQA examples;
-- [refqa-refine](): The trained model by our refining process.
+- [refqa-main](https://drive.google.com/open?id=1r2jgFSGtXBRTAeFzGzAwQ_BG4_Bi8v7f): The trained model using 300k RefQA examples;
+- [refqa-refine](https://drive.google.com/open?id=1wiAV7sYQFhXVNCuVK8kk9S114_z7Rjwc): The trained model by our refining process.
 
 ## Constructing RefQA
 
@@ -102,7 +102,7 @@ python3 -m torch.distributed.launch --nproc_per_node=4 run_squad.py \
 
 ### Refining RefQA data iteratively
 
-We provide a fine-tuned checkpoint (downloaded from [here]()) used for refining process. The refining process is conducted as follows:
+We provide a fine-tuned checkpoint (downloaded from [here](https://drive.google.com/open?id=1r2jgFSGtXBRTAeFzGzAwQ_BG4_Bi8v7f)) used for refining process. The refining process is conducted as follows:
 
 ```bash
 export REFQA_DATA_DIR=/{path_to_refqa_data}/
