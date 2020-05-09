@@ -6,6 +6,7 @@ export OUTPUT_DIR=/root/model_outputs/refqa_refine_model_output
 cd ..
 
 python multi_turn.py \
+      --refine_data_dir $REFQA_DATA_DIR \
       --output_dir $OUTPUT_DIR \
       --model_dir $MAIN_MODEL_DIR \
       --predict_file $REFQA_DATA_DIR/dev-v1.1.json \

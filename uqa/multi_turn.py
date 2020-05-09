@@ -107,8 +107,11 @@ def main(params):
 
     if params.debug:
         subprocess.Popen('cp %s/nbest_predictions_6_no_train_eval2.json %s/nbest_predictions_dev.json'%(params.model_dir, model_dir), shell=True).wait()
-    
-    current_score = do_evaluate(params.predict_file, os.path.join(model_dir, 'predictions_.json'))['f1']
+
+    if os.path.exists(os.path.join(model_dir, 'predictions_.json')):
+        current_score = do_evaluate(params.predict_file, os.path.join(model_dir, 'predictions_.json'))['f1']
+    else:
+        current_score = 0.0
 
     order = [1, 3, 2, 4, 5, 0]
     if params.debug:
