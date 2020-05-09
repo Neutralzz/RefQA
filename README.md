@@ -133,7 +133,7 @@ positional arguments:
 
 optional arguments:
     --generate_method   {1|2} The method of generating data for next training,
-                        1 is using refined data only, 2 is merging refined data with filtered data
+                        1 is using refined data only, 2 is merging refined data with filtered data (1:1 ratio)
     --score_threshold   The threshold for filtering predicted answers
     --threshold_rate    The decay factor for the above threshold
     --seed              Random seed for initialization
@@ -144,15 +144,17 @@ optional arguments:
 ## Citation
 If you find this repo useful in your research, you can cite the following paper:
 ```
-None
+@misc{li2020refqa,
+    title={Harvesting and Refining Question-Answer Pairs for Unsupervised QA},
+    author={Zhongli Li and Wenhui Wang and Li Dong and Furu Wei and Ke Xu},
+    year={2020},
+    eprint={2005.02925},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
 ```
 
 ## Acknowledgment
 
 Our code is based on [pytorch-transformers 1.2.0](https://github.com/huggingface/transformers/tree/1.2.0). We thank the authors for their wonderful open-source efforts.
 
-## Contact Information
-
-For help or issues using this repo, please submit a GitHub issue.
-
-For other communications, please contact Zhongli Li (`neutralzz96@gmail.com`).
