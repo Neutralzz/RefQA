@@ -2,7 +2,7 @@
     <p>Harvesting and Refining Question-Answer Pairs for Unsupervised QA</p>
 </h1>
 
-This repo contains the data, codes and models for the ACL2020 paper "Harvesting and Refining Question-Answer Pairs for Unsupervised QA".
+This repo contains the data, codes and models for the ACL2020 paper ["Harvesting and Refining Question-Answer Pairs for Unsupervised QA"](https://arxiv.org/abs/2005.02925).
 
 In this work, we introduce two approaches to improve unsupervised QA. First, we harvest lexically and syntactically divergent questions from Wikipedia to automatically construct a corpus of question-answer pairs (named as RefQA). Second, we take advantage of the QA model to extract more appropriate answers, which iteratively refines data over RefQA. We conduct experiments on SQuAD 1.1, and NewsQA by fine-tuning BERT without access to manually annotated data. Our approach outperforms previous unsupervised approaches by a large margin and is competitive with early supervised models.
 
