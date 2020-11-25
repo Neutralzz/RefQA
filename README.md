@@ -144,13 +144,21 @@ optional arguments:
 ## Citation
 If you find this repo useful in your research, you can cite the following paper:
 ```
-@misc{li2020refqa,
-    title={Harvesting and Refining Question-Answer Pairs for Unsupervised QA},
-    author={Zhongli Li and Wenhui Wang and Li Dong and Furu Wei and Ke Xu},
-    year={2020},
-    eprint={2005.02925},
-    archivePrefix={arXiv},
-    primaryClass={cs.CL}
+@inproceedings{li2020refqa,
+    title = "Harvesting and Refining Question-Answer Pairs for Unsupervised {QA}",
+    author = "Li, Zhongli  and
+      Wang, Wenhui  and
+      Dong, Li  and
+      Wei, Furu  and
+      Xu, Ke",
+    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2020.acl-main.600",
+    doi = "10.18653/v1/2020.acl-main.600",
+    pages = "6719--6728"
 }
 ```
 
